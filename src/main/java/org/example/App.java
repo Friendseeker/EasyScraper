@@ -17,11 +17,9 @@ import java.util.regex.Pattern;
 
 /**
  * Hello world!
- *
  */
-public class App 
-{
-    public static void main( String[] args ) throws IOException {
+public class App {
+    public static void main(String[] args) throws IOException {
         // Scrape movie lines and CSID, output a csv file.
 
         // TODO uncomment the codes
@@ -57,18 +55,23 @@ public class App
         Pattern urlPattern = Pattern.compile(
                 "(https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9]+\\.[^\\s]{2,}|www\\.[a-zA-Z0-9]+\\.[^\\s]{2,})");
         // thanks google, I will never figure the f****** url matching regex out by self.
-        String id = null;
-        String url = null;
-        for (String r: textReplies) {
+
+        for (String r : textReplies) {
             Matcher idMatcher = idPattern.matcher(r);
             Matcher urlMatcher = urlPattern.matcher(r);
-            if (idMatcher.find() & urlMatcher.find())
-                id = idMatcher.group(0);
-                url = urlMatcher.group(0);
-            // lesson, cannot call .group(0) twice in a row.
-            // for weird reason I don't know
-            // thank you unwanted side effect for wasting me 30 min to debug.
-                System.out.println(id + " " + url);
+            if (idMatcher.find() & urlMatcher.find()) {
+                String url = urlMatcher.group(0);
+                String id = idMatcher.group(0);
+                // lesson, cannot call .group(0) twice in a row.
+                // for weird reason I don't know
+                // thank you unwanted side effect for wasting me 30 min to debug.
+                System.out.println(id + " " + url); // For debugging purpose
+                // Writing
+                writer.writeNext(new String[]{id, url});
+            }
         }
+
+        // Closes Writer
+        writer.close();
     }
 }
