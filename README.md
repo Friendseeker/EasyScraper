@@ -13,3 +13,8 @@ will do rest of the dirty work for you!
 - run it in Intellj
 - type in the path to your downloaded HTML
 - open the MovieLog.csv file and ENJOY!
+
+# Notes
+
+- This program may require Maven to be enablied on your end.
+- I only tested this program with Firefox Mac. Piazza may return different HTML for different user agents such that the program breaks. Please post an issue stating your browser and operating system, if you encounter any problem using this program.
