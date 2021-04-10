@@ -3,13 +3,11 @@ package org.example;
 import com.opencsv.CSVWriter;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -22,19 +20,18 @@ public class App {
     public static void main(String[] args) throws IOException {
         // Scrape movie lines and CSID, output a csv file.
 
-        // TODO uncomment the codes
-        // Scanner scanner = new Scanner(System.in);  // Create a Scanner object
-        // System.out.println("Enter Path to HTML file. \n" +
-        //        "Do not use Safari tp save HTML file as it changes the file in unwanted way \n" +
-        // "recommended to save using FireFox and SAVE THE WHOLE PAGE!");
+         Scanner scanner = new Scanner(System.in);  // Create a Scanner object
+         System.out.println("Enter Path to HTML file. \n" +
+                "Do not use Safari to save HTML file as it changes the file in unwanted way \n" +
+         "recommended to save using FireFox and SAVE THE WHOLE PAGE!");
         // class names are CHANGED when using Safari to save WTF
-        // String input = scanner.nextLine(); // Set the path
-        String input = "/Users/jiahuitan/Documents/CPSCSample/Divine.html";
+         String input = scanner.nextLine(); // Set the path
+
         File in = new File(input); // No escape issue, which I appreciate
         Document doc = Jsoup.parse(in, null);
 
         // Stage 1 Test, if this shows incorrect result then need fixes.
-        System.out.printf("Title: %s\n", doc.title());
+        // System.out.printf("Title: %s\n", doc.title());
 
         // class that contains reply: actual_text post_region_text
 
@@ -69,9 +66,13 @@ public class App {
                 // Writing
                 writer.writeNext(new String[]{id, url});
             }
+            // why didn't IntelliJ tell me that I need to wrap statements in if with {}...
         }
 
         // Closes Writer
         writer.close();
+
+        // Final Message
+        System.out.println("IDs and Movie Links are now saved as MovieLog.csv");
     }
 }
