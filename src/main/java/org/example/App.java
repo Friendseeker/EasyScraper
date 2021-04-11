@@ -48,7 +48,7 @@ public class App {
 
         // Extracting CS ID and url links
 
-        Pattern idPattern = Pattern.compile("\\w\\d\\w\\d\\w");
+        Pattern idPattern = Pattern.compile("[A-Za-z]\\d[A-Za-z]\\d[A-Za-z]");
         Pattern urlPattern = Pattern.compile(
                 "(https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9]+\\.[^\\s]{2,}|www\\.[a-zA-Z0-9]+\\.[^\\s]{2,})");
         // thanks google, I will never figure the f****** url matching regex out by self.
